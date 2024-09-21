@@ -5,56 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoderFest</title>
-    <!--JS-->
-    <script defer src="./js/script.js"></script>
     <!--CSS-->
     <link rel="stylesheet" href="./css/main.css">
+    <!--JS-->
+    <script src="./js/script.js" defer></script>
+    <script src="./js/carro.js"></script>
+
 </head>
+
 <body>
     <header>
         <h1>¡Bienvenido a CoderFest!</h1>
-        <p>La fiesta indicada para los amantes de la programación.</p>
+        <img class=carrito src="img/carrito.png" alt="carro">
     </header>
-    <div class="contenido">
-        <div class="descripcion-evento">
-            <p>Este simulador fue ideado para la compra de entradas para una fiesta, algunas entradas tienen ciertos
-                beneficios que necesitan de datos adicionales como talles.</p>
-        </div>
-        <div class="entrada-opciones">
-            <div class="entrada">
-                <h2 class="bronce">Trainee</h2>
-                <p>Acceso general</p>
-                <p class="precio">$50</p>
-                <button id="btn-bronce">Comprar</button>
-            </div>
-            <div class="entrada">
-                <h2 class="plata">Junior</h2>
-                <p>Acceso general + 1 bebida gratis</p>
-                <p class="precio">$75</p>
-                <button id="btn-plata">Comprar</button>
-            </div>
-            <div class="entrada">
-                <h2 class="oro">Senior</h2>
-                <p>Acceso general + 2 bebidas gratis + Camiseta CoderFest</p>
-                <p class="precio">$100</p>
-                <button id="btn-oro">Comprar</button>
-            </div>
-            <div class="entrada">
-                <h2 class="esmeralda">Manager</h2>
-                <p>Acceso VIP + 2 bedidas gratis + Camiseta CoderFest </p>
-                <p class="precio">$350</p>
-                <button id="btn-esmeralda">Comprar</button>
-            </div>
-            <div class="entrada">
-                <h2 class="diamante">CEO</h2>
-                <p>Acceso VIP + Bebidas ilimitadas + Camiseta CoderFest + Meet & Greet con artistas invitados</p>
-                <p class="precio">$500</p>
-                <button id="btn-diamante">Comprar</button>
-            </div>
-        </div>
+    <div class="entrada-opciones" id="entrada-container">
+        <p id="total">Total: $0</p>
     </div>
     <footer>
         <p>© 2024 CoderFest. Todos los derechos reservados.</p>
     </footer>
 </body>
+
 </html>
