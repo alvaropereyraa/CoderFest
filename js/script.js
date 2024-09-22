@@ -30,7 +30,18 @@ const entradas = [
     precio: 500, 
   }
 ]
+localStorage.setItem("entradas", JSON.stringify(entradas));
+
 const contenedorEntradas = document.getElementById("entrada-container")
+
+let carro = 0;
+let cantidadEntradas = {};
+
+function actualizarCarro() {
+  console.log(`Carro de compras precio total: $${carro}`);
+  localStorage.setItem("carro", carro);
+  localStorage.setItem("cantidadEntradas", JSON.stringify(cantidadEntradas));
+}
 
 function crearEntrada(entradas) {
   entradas.forEach(entrada => {
@@ -41,67 +52,37 @@ function crearEntrada(entradas) {
     <h2> ${entrada.nombre}</h2>
     <p> ${entrada.beneficios}</p>
     <span>$ ${entrada.precio}</span>
-    <button>Comprar</button>
+    <button class="btn-comprar">Comprar</button>
+    <button class="btn-eliminar">Eliminar</button>
     `
+    nuevaEntrada.querySelector(".btn-comprar").addEventListener("click", () => {
+      carro += entrada.precio;
+      cantidadEntradas[entrada.id] = (cantidadEntradas[entrada.id] || 0) + 1;
+      console.log(`Fue añadida una entrada ${entrada.nombre}`);
+      actualizarCarro();
+    })
+    nuevaEntrada.querySelector(".btn-eliminar").addEventListener("click", () => {
+      if(cantidadEntradas[entrada.id] > 0) {
+        carro -= entrada.precio;
+        cantidadEntradas[entrada.id] -= 1;
+        console.log(`Fue eliminada una entrada ${entrada.nombre}`);
+
+        if(cantidadEntradas[entrada.id] === 0) {
+          delete cantidadEntradas[entrada.id];
+        }
+       actualizarCarro();
+      } else {
+        console.log(`No hay entradas ${entrada.nombre} para eliminar`);
+      }
+    })
     contenedorEntradas.appendChild(nuevaEntrada);
-    contenedorEntradas.getElementsByTagName("button")[0].addEventListener("click", () => agregarAlCarrito(entrada))
     })
   };
 
-crearEntrada(entradas)
-let terminos = confirm(
-  "¿Estas de acuerdo con nuestros terminos y condiciones?"
-);
-let nombre = "";
-let numero = 0;
-function datosUsuario() {
-  nombre = prompt("Ingresa tu nombre");
-  numero = prompt("Ingresa tu numero de telefono");
-}
-datosUsuario();
-for (let i = 0; i < entradas.length; i++) {
-  console.log(
-    nombre[0].toUpperCase() +
-      nombre.substring(1) +
-      " el precio de la entrada " +
-      entradas[i].nombre +
-      " es " +
-      entradas[i].precio +
-      "."
-  );
-}
-function elegirEntrada(eleccion) {
-  function talleCamiseta() {
-    return prompt("¿Que talle de camiseta prefieres? (S, M, L, XL, XXL)");
-  }
-  let talle;
-  switch (eleccion) {
-    case Trainee:
-      console.log(
-        `Gracias por elegir la entrada Trainee. Bienvenido a CoderFest. Te contactaremos al ${numero}`);
-      break;
-    case Junior:
-      console.log(
-        `Gracias por elegir la entrada Junior. Bienvenido a CoderFest. Te contactaremos al ${numero}`);
-      break;
-    case Senior:
-      talle = talleCamiseta();
-      console.log(
-        `Gracias por elegir la entrada Senior. Bienvenido a CoderFest. Te contactaremos al ${numero} y te enviaremos la camiseta talle ${talle}.`);
-      break;
-    case Manager:
-      talle = talleCamiseta();
-      console.log(
-        `Gracias por elegir la entrada Manager. Bienvenido a CoderFest. Te contactaremos al ${numero} y te enviaremos la camiseta talle ${talle}.`
-      );
-      break;
-    case CEO:
-      talle = talleCamiseta();
-      console.log(
-        `Gracias por elegir la entrada CEO. Bienvenido a CoderFest. Te contactaremos al ${numero} y te enviaremos la camiseta talle ${talle}.`);
-      break;
-    default:
-      console.log("Debes elegir una de las entradas disponibles.");
-      break;
-  }
-}
+crearEntrada(entradas);
+
+
+
+
+
+
