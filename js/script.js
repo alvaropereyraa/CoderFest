@@ -37,7 +37,7 @@ const contenedorEntradas = document.getElementById("entrada-container")
 let carro = 0;
 let cantidadEntradas = {};
 localStorage.setItem("carro", carro);
-  localStorage.setItem("cantidadEntradas", JSON.stringify(cantidadEntradas));
+localStorage.setItem("cantidadEntradas", JSON.stringify(cantidadEntradas));
 function actualizarCarro() {
   const parrafoCarrito = document.querySelector(".carrito");
   parrafoCarrito.textContent = `Total carro: $${carro}`;
