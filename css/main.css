@@ -6,30 +6,36 @@
 }
 body {
   background-color: #f4f4f4;
-  padding-top: 70px;
 }
 header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
   font-family: "Space Grotesk", sans-serif;
   background-color: #dfdfdf;
   height: 70px;
-  top: 0;
-  position: fixed;
   width: 100%;
+  position: relative;
 }
 header h1 {
-  margin: 0;
   font-size: 2em;
+  margin: 0;
+  line-height: 70px;
 }
-.entrada-producto{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 10px;
+header img {
+  width: 40px;
+  
+}
+.carritoFoto {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+.entrada-producto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 .entrada-opciones {
   display: flex;
@@ -44,16 +50,11 @@ header h1 {
   object-fit: cover;
 }
 .entrada-producto p {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 20px;
-    color: white;
-    margin-left: 10px;
-    margin-right: 10px
-}
-.carrito {
-  width: 55px;
-  height: auto;
-  margin: 50px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 20px;
+  color: white;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .entrada-producto h2 {
   font-family: "Permanent Marker", cursive;
@@ -76,8 +77,8 @@ header h1 {
   background-color: #03a126;
 }
 span {
-    font-size: 30px;
-    color: #ecf1dc;
+  font-size: 30px;
+  color: #ecf1dc;
 }
 footer {
   background-color: #000000;
@@ -87,7 +88,7 @@ footer {
   width: 100%;
   bottom: 0;
 }
-img {
+.entrada-opciones img {
   width: 905px;
   height: 500px;
   object-fit: cover;
