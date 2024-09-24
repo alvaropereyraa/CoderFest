@@ -31,17 +31,24 @@ const entradas = [
   }
 ]
 localStorage.setItem("entradas", JSON.stringify(entradas));
-
 const contenedorEntradas = document.getElementById("entrada-container")
-
 let carro = 0;
 let cantidadEntradas = {};
-localStorage.setItem("carro", carro);
-localStorage.setItem("cantidadEntradas", JSON.stringify(cantidadEntradas));
+
+// Funciones
 function actualizarCarro() {
-  const parrafoCarrito = document.querySelector(".carrito");
+  const parrafoCarrito = document.querySelector(".carritoCosto");
   parrafoCarrito.textContent = `Total carro: $${carro}`;
+  const parrafoCantidad = document.querySelector(".carritoCantidad");
+  let detallesCantidad = "";
+  for (let id in cantidadEntradas) {
+    const entrada = entradas.find(entrada => entrada.id == id);
+    detallesCantidad += `${entrada.nombre} - ${cantidadEntradas[id]} `;
+  }
+  parrafoCantidad.innerHTML = `Entradas: ${detallesCantidad}`;
+  localStorage.setItem("cantidadEntradas", JSON.stringify(cantidadEntradas));
 }
+
 
 function crearEntrada(entradas) {
   entradas.forEach(entrada => {
@@ -60,6 +67,7 @@ function crearEntrada(entradas) {
       cantidadEntradas[entrada.id] = (cantidadEntradas[entrada.id] || 0) + 1;
       console.log(`Fue añadida una entrada ${entrada.nombre}`);
       actualizarCarro();
+      localStorage.setItem("carro", carro);
     })
     nuevaEntrada.querySelector(".btn-eliminar").addEventListener("click", () => {
       if(cantidadEntradas[entrada.id] > 0) {
@@ -71,6 +79,7 @@ function crearEntrada(entradas) {
           delete cantidadEntradas[entrada.id];
         }
        actualizarCarro();
+       localStorage.setItem("carro", carro);
       } else {
         console.log(`No hay entradas ${entrada.nombre} para eliminar`);
       }
