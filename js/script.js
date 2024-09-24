@@ -47,6 +47,7 @@ function actualizarCarro() {
   }
   parrafoCantidad.innerHTML = `Entradas: ${detallesCantidad}`;
   localStorage.setItem("cantidadEntradas", JSON.stringify(cantidadEntradas));
+  localStorage.setItem("carro", carro);
 }
 
 
@@ -67,19 +68,16 @@ function crearEntrada(entradas) {
       cantidadEntradas[entrada.id] = (cantidadEntradas[entrada.id] || 0) + 1;
       console.log(`Fue añadida una entrada ${entrada.nombre}`);
       actualizarCarro();
-      localStorage.setItem("carro", carro);
     })
     nuevaEntrada.querySelector(".btn-eliminar").addEventListener("click", () => {
       if(cantidadEntradas[entrada.id] > 0) {
         carro -= entrada.precio;
         cantidadEntradas[entrada.id] -= 1;
         console.log(`Fue eliminada una entrada ${entrada.nombre}`);
-
         if(cantidadEntradas[entrada.id] === 0) {
           delete cantidadEntradas[entrada.id];
         }
        actualizarCarro();
-       localStorage.setItem("carro", carro);
       } else {
         console.log(`No hay entradas ${entrada.nombre} para eliminar`);
       }
