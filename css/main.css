@@ -61,7 +61,7 @@ header h1 {
 
 #carrito-contenido li .botones {
   display: flex;
-  gap: 5px;
+  gap: 15px;
 }
 #carrito-contenido li button {
   background-color: #007bff;
