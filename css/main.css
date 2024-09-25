@@ -23,15 +23,99 @@ header h1 {
   margin: 0;
   line-height: 70px;
 }
-header img {
-  width: 40px;
-  
+#carrito-contenido.oculto {
+    display: none;
 }
-.carritoFoto {
-  position: absolute;
-  right: 20px;
-  top: 15px;
+
+#carrito-imagen {
+  width: 50px;
+    cursor: pointer;
 }
+
+#carrito-container {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 300px;
+    background-color: #dfdfdf ;
+    padding: 10px;
+}
+
+#carrito-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#carrito-container li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+#carrito-contenido li .producto-nombre {
+  flex: 1;
+  color: black;
+  font-size: 1.5rem;
+}
+
+#carrito-contenido li .botones {
+  display: flex;
+  gap: 5px;
+}
+#carrito-contenido li button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#carrito-contenido li button:hover {
+  background-color: #0056b3;
+}
+
+#carrito-contenido li .btn-sumar {
+  background-color: #28a745;
+}
+
+#carrito-contenido li .btn-sumar:hover {
+  background-color: #218838;
+}
+
+#carrito-contenido li .btn-restar {
+  background-color: #dc3545;
+}
+
+#carrito-contenido li .btn-restar:hover {
+  background-color: #c82333;
+}
+
+#total-carrito {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: right;
+}
+
+#vaciar-carrito, #finalizar-compra {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+#vaciar-carrito:hover, #finalizar-compra:hover {
+  background-color: #218838;
+}
+
+/* Entradas */
 .entrada-producto {
   display: flex;
   justify-content: center;
@@ -98,23 +182,7 @@ footer {
   border-radius: 20px 20px 0px 0px;
 }
 
-.carritoCosto {
-  position: absolute;
-  top: 30px;
-  right: 20px;
-  font-size: 20px;
-  font-weight: 700;
-  color: rgb(172, 30, 30);
-}
-.carritoCantidad {
-  position: absolute;
-  
-  right: 20px;
-  font-size: 20px;
-  font-weight: 700;
-  color: rgb(172, 30, 30);
-}
 
-.btn-eliminar:hover{
+.btn-eliminar:hover {
   background-color: red;
 }
