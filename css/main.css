@@ -116,7 +116,6 @@ header h1 {
   background-color: #218838;
 }
 
-/* Entradas */
 .entrada-opciones {
   display: flex;
   flex-wrap: wrap;
@@ -161,7 +160,7 @@ header h1 {
   color: #e0e0e0;
   margin: 0 10px;
   text-align: center;
-  font-family: 'Raleway', sans-serif; /* Fuente de Google Fonts */
+  font-family: 'Raleway', sans-serif; 
 }
 
 
