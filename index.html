@@ -27,6 +27,26 @@
     </header>
     
     <div class="entrada-opciones" id="entrada-container"></div>
+    
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="cerrar">&times;</span>
+            <form id="formulario-compra" class="tarjeta-formulario">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" required>
+                <label for="pais">País:</label>
+                <input type="text" id="pais" name="pais" required>
+                <label for="ciudad">Ciudad:</label>
+                <input type="text" id="ciudad" name="ciudad" required>
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion" required>
+                <button type="submit">Finalizar compra</button>
+            </form>
+            <div class="resumen"></div>
+        </div>
+    </div>
     <footer>
         <p>© 2024 CoderFest. Todos los derechos reservados.</p>
     </footer>

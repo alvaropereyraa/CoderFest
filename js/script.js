@@ -44,17 +44,22 @@ function cargarCarrito() {
 function renderizarCarrito() {
   const carritoContainer = document.getElementById("carrito");
   carritoContainer.innerHTML = "";
-  carrito.forEach((producto, index) => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-            <span class="producto-nombre">${producto.nombre} - ${producto.cantidad}</span>
-            <div class="botones">
-                <button class="btn-sumar" onclick="incrementarCantidad(${index})">+</button>
-                <button class="btn-restar" onclick="disminuirCantidad(${index})">-</button>
-            </div>
-        `;
-    carritoContainer.appendChild(li);
-  });
+  if (carrito.length === 0) {
+    carritoContainer.innerHTML = '<p>Carrito vacío</p>';
+  } else {
+    carrito.forEach((producto, index) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+              <span class="producto-nombre">${producto.nombre} - ${producto.cantidad}</span>
+              <div class="botones">
+                  <button class="btn-sumar" onclick="incrementarCantidad(${index})">+</button>
+                  <button class="btn-restar" onclick="disminuirCantidad(${index})">-</button>
+                  <button class="btn-eliminar" onclick="eliminarProducto(${index})">Eliminar</button>
+              </div>
+          `;
+      carritoContainer.appendChild(li);
+    });
+  }
   actualizarTotal();
   guardarCarrito();
 }
@@ -73,6 +78,11 @@ function disminuirCantidad(index) {
   renderizarCarrito();
 }
 
+function eliminarProducto(index) {
+  carrito.splice(index, 1);
+  renderizarCarrito();
+}
+
 function actualizarTotal() {
   const total = carrito.reduce(
     (sum, producto) => sum + producto.precio * producto.cantidad,
@@ -85,17 +95,32 @@ document.getElementById("vaciar-carrito").addEventListener("click", () => {
   carrito = [];
   renderizarCarrito();
 });
-
 document.getElementById("finalizar-compra").addEventListener("click", () => {
-  alert("Compra finalizada");
+  document.getElementById("formulario-compra").style.display = "block";
 });
+
+document.getElementById('formulario-compra').addEventListener('submit', function(evento) {
+    evento.preventDefault();
+    const nombre = document.getElementById('nombre').value;
+    const direccion = document.getElementById('direccion').value;
+    mostrarResumen(nombre, direccion);
+});
+
+function mostrarResumen(nombre, direccion) {
+    document.querySelector('.resumen').innerHTML = `
+        <h2>Resumen de compra</h2>
+        <p>Nombre: ${nombre}</p>
+        <p>Dirección: ${direccion}</p>
+    `;
+}
+
 
 document.getElementById("carrito-imagen").addEventListener("click", () => {
   const carritoContenido = document.getElementById("carrito-contenido");
   carritoContenido.classList.toggle("oculto");
 });
 
-document.addEventListener("DOMContentLoaded", cargarCarrito);
+cargarCarrito();
 
 function crearEntrada(entradas) {
   const entradaContainer = document.getElementById("entrada-container");
@@ -124,4 +149,44 @@ function crearEntrada(entradas) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => crearEntrada(entradas));
+crearEntrada(entradas);
+
+document.getElementById('formulario-compra').addEventListener('submit', function(evento) {
+  evento.preventDefault();
+  const nombre = document.getElementById('nombre').value;
+  const apellido = document.getElementById('apellido').value;
+  const pais = document.getElementById('pais').value;
+  const ciudad = document.getElementById('ciudad').value;
+  const direccion = document.getElementById('direccion').value;
+  mostrarResumen(nombre, apellido, pais, ciudad, direccion);
+  modal.style.display = "none"; 
+});
+
+function mostrarResumen(nombre, apellido, pais, ciudad, direccion) {
+  document.querySelector('.resumen').innerHTML = `
+      <h2>Resumen de compra</h2>
+      <p>Nombre: ${nombre}</p>
+      <p>Apellido: ${apellido}</p>
+      <p>País: ${pais}</p>
+      <p>Ciudad: ${ciudad}</p>
+      <p>Dirección: ${direccion}</p>
+  `;
+}
+
+const modal = document.getElementById("modal");
+const btnFinalizarCompra = document.getElementById("finalizar-compra");
+const spanCerrar = document.getElementsByClassName("cerrar")[0];
+
+btnFinalizarCompra.onclick = function() {
+modal.style.display = "block";
+}
+
+spanCerrar.onclick = function() {
+modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+if (event.target == modal) {
+  modal.style.display = "none";
+}
+}

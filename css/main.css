@@ -57,13 +57,20 @@ header h1 {
 #carrito-contenido li .producto-nombre {
   flex: 1;
   color: black;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
-
 #carrito-contenido li .botones {
   display: flex;
-  gap: 15px;
+  justify-content: space-between;
+  gap: 5px; /* Ajusta el espacio entre los botones según sea necesario */
 }
+
+#carrito-contenido li .botones button {
+  
+  padding: 5px;
+  font-size: 15px; /* Ajusta el tamaño de la fuente según sea necesario */
+}
+
 #carrito-contenido li button {
   background-color: #007bff;
   color: white;
@@ -72,6 +79,7 @@ header h1 {
   padding: 5px 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  
 }
 
 #carrito-contenido li button:hover {
@@ -80,6 +88,8 @@ header h1 {
 
 #carrito-contenido li .btn-sumar {
   background-color: #28a745;
+  width: 30px;
+  
 }
 
 #carrito-contenido li .btn-sumar:hover {
@@ -88,8 +98,12 @@ header h1 {
 
 #carrito-contenido li .btn-restar {
   background-color: #dc3545;
+  width: 30px;
+  
 }
-
+#formulario-compra {
+  display: none;
+}
 #carrito-contenido li .btn-restar:hover {
   background-color: #c82333;
 }
@@ -115,6 +129,7 @@ header h1 {
 #vaciar-carrito:hover, #finalizar-compra:hover {
   background-color: #218838;
 }
+
 
 .entrada-opciones {
   display: flex;
@@ -190,6 +205,7 @@ header h1 {
   background-color: #222;
 }
 
+
 footer {
   background-color: #000;
   color: #fff;
@@ -199,4 +215,79 @@ footer {
   position: relative;
   bottom: 0;
   margin-top: auto;
+}
+/* Estilos para el modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+.cerrar {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.cerrar:hover,
+.cerrar:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Estilos para el formulario en formato tarjeta */
+.tarjeta-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tarjeta-formulario label,
+.tarjeta-formulario input,
+.tarjeta-formulario button {
+  display: block;
+  width: 100%;
+}
+
+.tarjeta-formulario label {
+  font-weight: bold;
+}
+
+.tarjeta-formulario input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.tarjeta-formulario button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tarjeta-formulario button:hover {
+  background-color: #45a049;
 }
