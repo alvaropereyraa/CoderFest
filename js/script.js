@@ -62,6 +62,7 @@ function renderizarCarrito() {
   }
   actualizarTotal();
   guardarCarrito();
+  actualizarVisibilidadTotalCarrito(); 
 }
 
 function incrementarCantidad(index) {
@@ -98,6 +99,15 @@ document.getElementById("vaciar-carrito").addEventListener("click", () => {
 document.getElementById("finalizar-compra").addEventListener("click", () => {
   document.getElementById("formulario-compra").style.display = "block";
 });
+function actualizarVisibilidadTotalCarrito() {
+  const totalCarrito = document.getElementById("total-carrito");
+  if (carrito.length === 0) {
+    totalCarrito.style.display = 'none';
+  } else {
+    totalCarrito.style.display = 'block';
+  }
+}
+
 
 document.getElementById('formulario-compra').addEventListener('submit', function(evento) {
     evento.preventDefault();
