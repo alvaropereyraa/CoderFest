@@ -13,7 +13,7 @@ function crearEntrada(entradas) {
     nuevaEntrada.querySelector(".btn-comprar").addEventListener("click", () => {
       try {
         if (entrada.id === 4) {
-          throw new Error("No se puede comprar la entrada Manager");
+          throw new Error("Entrada agotada");
         }
 
         const productoEnCarrito = carrito.find(
