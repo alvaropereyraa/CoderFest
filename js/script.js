@@ -11,13 +11,11 @@ function crearEntrada(entradas) {
       <button class="btn-comprar">Comprar</button>
     `;
     nuevaEntrada.querySelector(".btn-comprar").addEventListener("click", () => {
-      if (entrada.id === 4) {
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "Entrada agotada",
-        });
-      } else {
+      try {
+        if (entrada.id === 4) {
+          throw new Error("No se puede comprar la entrada Manager");
+        }
+
         const productoEnCarrito = carrito.find(
           (producto) => producto.id === entrada.id
         );
@@ -27,6 +25,12 @@ function crearEntrada(entradas) {
           carrito.push({ ...entrada, cantidad: 1 });
         }
         renderizarCarrito();
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: error.message,
+        });
       }
     });
     entradaContainer.appendChild(nuevaEntrada);
