@@ -39,9 +39,6 @@ function crearEntrada(entradas) {
 
 fetch("./js/entradas.json")
   .then((response) => {
-    if (!response.ok) {
-      throw new Error("Error al cargar el archivo JSON");
-    }
     return response.json();
   })
   .then((informacion) => {
