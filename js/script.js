@@ -145,13 +145,11 @@ function actualizarVisibilidadTotalCarrito() {
   }
 }
 
-document
-  .getElementById("formulario-compra")
-  .addEventListener("submit", function (evento) {
-    evento.preventDefault();
-    const nombre = document.getElementById("nombre").value;
-    const direccion = document.getElementById("direccion").value;
-  });
+document.getElementById("formulario-compra").addEventListener("submit", function(evento) {
+  evento.preventDefault();
+  document.getElementById("formulario-compra").style.display = "none";
+  document.getElementById("formulario-tarjeta").style.display = "block";
+});
 
 document.getElementById("carrito-imagen").addEventListener("click", () => {
   const carritoContenido = document.getElementById("carrito-contenido");
@@ -160,41 +158,51 @@ document.getElementById("carrito-imagen").addEventListener("click", () => {
 
 cargarCarrito();
 
-document
-  .getElementById("formulario-compra")
-  .addEventListener("submit", function (evento) {
-    evento.preventDefault();
-    const nombre = document.getElementById("nombre").value;
-    const apellido = document.getElementById("apellido").value;
-    const pais = document.getElementById("pais").value;
-    const ciudad = document.getElementById("ciudad").value;
-    const direccion = document.getElementById("direccion").value;
+document.getElementById("formulario-compra").addEventListener("submit", function(evento) {
+  evento.preventDefault();
+  document.getElementById("formulario-compra").style.display = "none";
+  document.getElementById("formulario-tarjeta").style.display = "block";
+});
 
-    Swal.fire({
-      icon: "success",
-      title: "Compra finalizada",
-      text: "Gracias por tu compra!",
-    }).then(() => {
-      carrito = [];
-      renderizarCarrito();
-    });
-
-    modal.style.display = "none";
+document.getElementById("formulario-tarjeta").addEventListener("submit", function(evento) {
+  evento.preventDefault();
+  Swal.fire({
+    icon: "success",
+    title: "Compra finalizada",
+    text: "Gracias por tu compra!",
+  }).then(() => {
+    carrito = [];
+    renderizarCarrito();
   });
+  modal.style.display = "none"; 
+});
 
+document.getElementById("numero-tarjeta").addEventListener("input", function(event) {
+  this.value = this.value.replace(/\D/g, '');
+});
+
+document.getElementById("fecha-expiracion").addEventListener("input", function(event) {
+  this.value = this.value.replace(/[^0-9/]/g, '');
+});
+
+document.getElementById("cvv").addEventListener("input", function(event) {
+  this.value = this.value.replace(/\D/g, ''); 
+});
+ 
 const modal = document.getElementById("modal");
 const btnFinalizarCompra = document.getElementById("finalizar-compra");
 const spanCerrar = document.getElementsByClassName("cerrar")[0];
 
-btnFinalizarCompra.onclick = function () {
+btnFinalizarCompra.onclick = function() {
   modal.style.display = "block";
 };
 
-spanCerrar.onclick = function () {
-  modal.style.display = "none";
+spanCerrar.onclick = function() {
+  modal.style.display = "none"; 
 };
 
-window.onclick = function (event) {
+
+window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
